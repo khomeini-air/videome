@@ -2,10 +2,12 @@ defmodule VideomeWeb.VideoController do
   use VideomeWeb, :controller
   alias Videome.VideoGenerator
 
-  def create(conn, %{"upload" => params}) do
-    %{"photos" => upload_plugs} = params
+  def create(conn, param) do
+    upload_param = Map.get(param, "upload")
 
-    case gen_video (upload_plugs) do
+    if !upload_param, do: conn|>put_flash(:error, "Please select your images")|> redirect(to: "/")
+
+    case gen_video (Map.get(upload_param, "photos")) do
       {:ok, video_file} -> send_download_file(conn, video_file)
       {:error, msg} -> display_error(conn, msg)
     end

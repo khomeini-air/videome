@@ -20,7 +20,7 @@ defmodule Videome.VideoGenerator.FfmpegUtil do
 
     case execute(command) do
       :ok -> {:ok, output_file}
-      {:error, {_, _}} -> {:error, "Unable to create your video - Please ensure you upload uncorrupted images only"}
+      {:error, {_, _}} -> {:error, "Unable to create your video - Please ensure to upload uncorrupted images only"}
     end
   end
 end
