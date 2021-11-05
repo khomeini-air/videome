@@ -1,0 +1,8 @@
+
+<%= form_for :upload, "/video",[multipart: true], fn f -> %>
+  <%= label f, :photos %>
+  <%= file_input f, :photos, [multiple: true]  %>
+  <div>
+    <%= submit "Upload", phx_disable_with: "Working...", class: "border" %>
+  </div>
+<% end %>
