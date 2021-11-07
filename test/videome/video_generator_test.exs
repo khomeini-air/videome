@@ -3,7 +3,10 @@ defmodule Videome.VideoGeneratorTest do
   alias Videome.VideoGenerator
 
   test "gen slideshow" do
-    path = ["file_for_video_generator/a.png","file_for_video_generator/b.png"]
-    VideoGenerator.generate(path) =~ {:ok, ".mp4"}
+    # This test requires the availability of files in img_paths
+    img_paths = ["priv/file_for_video_generator/a.png", "priv/file_for_video_generator/b.png"]
+    {:ok, output_file} = VideoGenerator.generate(img_paths)
+
+    assert output_file =~ "slideshow.mp4"
   end
 end

@@ -3,7 +3,7 @@ defmodule Videome.VideoGenerator.FfmpegUtilTest do
   alias Videome.VideoGenerator.FfmpegUtil
 
   test "gen slideshow video" do
-    assert FfmpegUtil.gen("abc","img%03d.png") == {:ok, "abc/abc.mp4"}
+    {:ok, output_file} = FfmpegUtil.gen("priv/abc/img%03d.png")
+    assert output_file =~ "slideshow.mp4"
   end
-
 end
